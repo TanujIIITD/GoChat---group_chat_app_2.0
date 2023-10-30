@@ -1,0 +1,226 @@
+
+$light-blue: #01931a;        // assigning some variables
+$light-grey: #7E878c;
+$dark-grey: #2a3354;
+$white: #ffffff;
+
+$font-heading: 'Baloo 2', cursive;
+$font-text: 'Poppins', sans-serif;
+$fsize: 16px;
+
+@mixin flexing($flex_direction, $justify_content, $align_items){     // sass function, can be used anywhere to set this properties 
+    display: flex;
+    flex-direction: $flex_direction;   
+    justify-content: $justify_content; 
+    align-items: $align_items; 
+} 
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+    font-family: $font-text;
+
+    ::-webkit-scrollbar{        // do not want to see scrollbar in our app but it remains there
+        display: none;
+    }
+}
+
+main{       // to place the content of main at the center of the webpage
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 80%;
+    overflow: hidden;
+    border-radius: 10px;
+
+    header{
+        background-color: $light-blue;
+        color: $white;
+        padding: 7px 20px;
+        @include flexing(row, space-between, center);
+
+        div.title{
+            @include flexing(row, flex-start, center);      
+
+            h1{
+                font-family: $font-heading;
+                font-size: 32px;
+                margin-left: 10px;
+            }
+        }
+
+        button{
+            background-color: transparent;
+            border: none;
+            outline: none;
+            filter: invert(100%);      
+            cursor: pointer;
+            display: none;
+        }
+    }
+
+    div.container{
+        background-color: $light-grey;
+        padding: 20px;
+        @include flexing(row, flex-start, stretch);     
+
+        div.users-window{
+            width: 350px;
+            color: $white;
+            background-color: $dark-grey;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-right: 20px;
+
+            div.users-head{
+                @include flexing(row, space-between, center);
+                margin-bottom: 10px;
+
+                h4{
+                    background-color: $light-grey;
+                    padding: 0px 8px;
+                    border-radius: 50px;
+                }
+            }
+
+            div.users-list{
+                margin-top: 8px;
+
+                p{
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    letter-spacing: 0.5px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        div.chat-window{
+            width: 100%;
+            background-color: $dark-grey;
+            border-radius: 10px;
+
+            div.chats{
+                height: 65vh;   // height will be 65% of the screen of the device used
+                padding: 20px;
+                overflow-y:auto;
+
+                div.user-join{
+                    font-size: 0.9rem;
+                    color: $dark-grey;
+                    background-color: rgb(195, 190, 190);
+                    border-radius: 50px;   
+                    
+                    width: max-content;
+                    padding: 5px 40px;
+                    margin: 0px auto;
+                    margin-bottom: 15px;
+                }
+
+                div.message{
+                    color: $dark-grey;
+                    background-color: $white;
+                    padding: 5px 15px;
+                    width: max-content;
+                    max-width: 400px;
+                    margin-bottom: 15px;
+                    border-radius: 10px 50px 50px 10px;
+                    @include flexing(row, space-between, center);
+
+                    div.names{
+                        h5{
+                            font-weight: bolder;
+                        }
+                        
+                        p{
+                            font-size: $fsize;
+                            max-width: 300px;
+                        }
+                    }
+
+                    div.time{
+                        color: $light-grey;
+                        margin-left: 5px;
+                    }
+                }
+
+                div.outgoing{
+                    margin-left: auto;
+                    color: $white;
+                    background-color: $light-blue;
+                    border-radius: 50px 10px 10px 50px;
+
+                    div.time{
+                        color: rgb(180, 218, 231);
+                        margin-left: 5px;
+                    }
+                }
+            }
+
+            div.user-input{
+                @include flexing(row, space-between, stretch);
+                padding: 20px;
+                
+                input{
+                    font-size: $fsize;
+                    background-color: $white;
+                    padding: 10px 20px;
+                    width: 100%;
+                    border-radius: 50px 0px 0px 50px;
+                    border: none;
+                    outline: none;
+                }
+
+                button{
+                    padding: 5px 15px;
+                    color: $white;
+                    background-color: $light-blue;
+                    font-weight: bolder;
+                    font-size: $fsize;
+                    margin-left: 3px;
+                    border-radius: 0px 50px 50px 0px;
+                    letter-spacing: 0.7px;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}    
+
+
+@media screen and (max-width: 900px) {     // if device is smaller
+    main{
+        width: 95%;
+        header{
+            button{
+                display: block;
+            }
+        }
+        div.container{
+            position: relative;
+            div.users-window{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                border-radius: 0px 0px 10px 10px;
+                height: max-content;
+                box-shadow: 0px 15px 20px -12px black;
+                display: none; z-index: 11;
+            }
+            div.chat-window{
+                div.chats{
+                    div.message{
+                        max-width: 300px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+step 1: open vs code.
+step 2: open folder in it.
+step 3: write "npm run test" in terminal.
+step 4: now, you will get a localhost number in terminal as "server started at 3000".
+step 5: write that number in new tab of search engine as "localhost:3000".
+step 6: now, enjoy your chat with friends...
