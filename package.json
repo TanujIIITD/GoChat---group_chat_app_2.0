@@ -6,12 +6,6 @@
   "scripts": {
     "test": "nodemon server.js"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
